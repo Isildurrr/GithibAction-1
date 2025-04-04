@@ -6,6 +6,9 @@ jobs:
     my_first_job:
         runs-on: ubuntu-latest
         steps:
+        - name: Checkout the repo
+          uses: actions/checkout@v4
+          
         - name: welcome message
           run: echo "Hello, this is first workflow run"
 
