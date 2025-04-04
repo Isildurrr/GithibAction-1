@@ -8,12 +8,9 @@ jobs:
         steps:
         - name: Checkout the repo
           uses: actions/checkout@v4
-          
+
         - name: welcome message
-          run: echo "Hello, this is first workflow run"
-
-        - name: list of files
-          run: ls
-
-        - name: Read the file
-          run: cat README.md
+          run: |
+           echo "Hello, this is first workflow run"
+           ls -alh
+           cat README.md
