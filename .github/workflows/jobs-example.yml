@@ -14,20 +14,37 @@ jobs:
 
         -   name: sleep
             run: sleep 30
+        - uses: actions/upload-artifact@v4
+          name: upload artefact
+          with:
+            name: dragon
+            path: dragon.txt
 
     test_job:
         needs: my_first_job1
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/download-artifact@v4
+          name: download artefact
+          with:
+            name: dragon
+
         -   name: sleep
             run: sleep 10
 
         -   name: test
             run: grap -i "dragon" dragon.txt
 
+
     deploy_job:
         needs: [my_first_job1, test_job]
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/download-artifact@v4
+          name: download artefact
+          with:
+            name: dragon
+
         -   name: check
             run: cat dragon.txt
+    
