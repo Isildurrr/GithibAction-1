@@ -1,0 +1,33 @@
+name: my first workflow
+
+on: push
+
+jobs:
+    my_first_job1:
+        runs-on: ubuntu-latest
+        steps:
+        -   name: install
+            run: sudo apt-get install cowsay -y
+
+        -   name: execute
+            run: cowsay -f dragon "run dragon " >> dragon.txt
+
+        -   name: sleep
+            run: sleep 30
+            
+    my_second_job2:
+        needs: my_first_job1
+        runs-on: ubuntu-latest
+        steps:
+        -   name: sleep
+            run: sleep 10
+
+        -   name: test
+            run: grap -i "dragon" dragon.txt
+
+    my_second_job3:
+        needs: [my_first_job1, my_second_job2]
+        runs-on: ubuntu-latest
+        steps:
+        -   name: check
+            run: cat dragon.txt
