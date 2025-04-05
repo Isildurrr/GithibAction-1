@@ -1,4 +1,4 @@
-name: my first workflow
+name: dragon workflow
 
 on: push
 
@@ -14,8 +14,8 @@ jobs:
 
         -   name: sleep
             run: sleep 30
-            
-    my_second_job2:
+
+    test_job:
         needs: my_first_job1
         runs-on: ubuntu-latest
         steps:
@@ -25,8 +25,8 @@ jobs:
         -   name: test
             run: grap -i "dragon" dragon.txt
 
-    my_second_job3:
-        needs: [my_first_job1, my_second_job2]
+    deploy_job:
+        needs: [my_first_job1, test_job]
         runs-on: ubuntu-latest
         steps:
         -   name: check
