@@ -12,8 +12,7 @@ jobs:
         -   name: execute
             run: cowsay -f dragon "run dragon " >> dragon.txt
 
-        -   name: sleep
-            run: sleep 30
+
         - uses: actions/upload-artifact@v4
           name: upload artefact
           with:
@@ -29,11 +28,8 @@ jobs:
           with:
             name: dragon
 
-        -   name: sleep
-            run: sleep 10
-
         -   name: test
-            run: grap -i "dragon" dragon.txt
+            run: grep -i "dragon" dragon.txt
 
 
     deploy_job:
