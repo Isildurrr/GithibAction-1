@@ -20,6 +20,7 @@ jobs:
             path: dragon.txt
 
     test_job:
+        if: github.ref == 'refs/heads/main'
         needs: my_first_job1
         runs-on: ubuntu-latest
         steps:
@@ -33,6 +34,7 @@ jobs:
 
 
     deploy_job:
+        if: github.ref == 'refs/heads/main'
         needs: [my_first_job1, test_job]
         runs-on: ubuntu-latest
         steps:
